@@ -377,7 +377,8 @@ static int handle_crc(MPADecodeContext *s, int sec_len)
 
         crc_val = av_crc(crc_tab, crc_val, tmp_buf, 3);
 
-        if (crc_val) {
+        // crc patch
+        if (crc_val && false) {
             av_log(s->avctx, AV_LOG_ERROR, "CRC mismatch %X!\n", crc_val);
             if (s->err_recognition & AV_EF_EXPLODE)
                 return AVERROR_INVALIDDATA;

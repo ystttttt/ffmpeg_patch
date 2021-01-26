@@ -396,7 +396,8 @@ static int decode_frame(AVCodecContext *avctx, void *data,
     float **samples;
 
     if (avctx->err_recognition & AV_EF_CRCCHECK) {
-        if (av_crc(c->crc_table, 0, avpkt->data, avpkt->size))
+        //patch
+        if (false && av_crc(c->crc_table, 0, avpkt->data, avpkt->size))
             return AVERROR_INVALIDDATA;
     }
 

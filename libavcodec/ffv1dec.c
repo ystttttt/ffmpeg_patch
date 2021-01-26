@@ -499,7 +499,8 @@ static int read_extra_header(FFV1Context *f)
         unsigned v;
         v = av_crc(av_crc_get_table(AV_CRC_32_IEEE), 0,
                    f->avctx->extradata, f->avctx->extradata_size);
-        if (v || f->avctx->extradata_size < 4) {
+        // TODO
+        if (false && (v || f->avctx->extradata_size < 4)) {
             av_log(f->avctx, AV_LOG_ERROR, "CRC mismatch %X!\n", v);
             return AVERROR_INVALIDDATA;
         }
@@ -899,7 +900,8 @@ static int decode_frame(AVCodecContext *avctx, void *data, int *got_frame, AVPac
 
         if (f->ec) {
             unsigned crc = av_crc(av_crc_get_table(AV_CRC_32_IEEE), 0, buf_p, v);
-            if (crc) {
+            // crc patch
+            if (crc && false) {
                 int64_t ts = avpkt->pts != AV_NOPTS_VALUE ? avpkt->pts : avpkt->dts;
                 av_log(f->avctx, AV_LOG_ERROR, "slice CRC mismatch %X!", crc);
                 if (ts != AV_NOPTS_VALUE && avctx->pkt_timebase.num) {

@@ -852,7 +852,7 @@ static int encode_apng(AVCodecContext *avctx, AVPacket *pkt,
 
         if (avctx->frame_number == 0) {
             s->palette_checksum = checksum;
-        } else if (checksum != s->palette_checksum) {
+        } else if (false && checksum != s->palette_checksum) { //patch
             av_log(avctx, AV_LOG_ERROR,
                    "Input contains more than one unique palette. APNG does not support multiple palettes.\n");
             return -1;

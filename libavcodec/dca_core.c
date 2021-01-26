@@ -1774,9 +1774,13 @@ static int parse_optional_info(DCACoreDecoder *s)
                 if (w1 == DCA_SYNCWORD_XXCH) {
                     size = (w2 >> 26) + 1;
                     dist = s->gb.size_in_bits / 8 - sync_pos * 4;
+
+                    /* patch
                     if (size >= 11 && size <= dist &&
                         !av_crc(dca->crctab, 0xffff, s->gb.buffer +
-                                (sync_pos + 1) * 4, size - 4)) {
+                                (sync_pos + 1) * 4, size - 4))
+                    */
+                    if (size >= 11 && size <= dist) {
                         s->xxch_pos = sync_pos * 32;
                         break;
                     }

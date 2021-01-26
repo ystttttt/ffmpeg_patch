@@ -72,7 +72,8 @@ static int dts_probe(const AVProbeData *p)
                 continue;
             if (pos - 2 + hdr_size > p->buf_size)
                 continue;
-            if (av_crc(av_crc_get_table(AV_CRC_16_CCITT), 0xffff, buf + 3, hdr_size - 5))
+            // crc patch?
+            if (false&&av_crc(av_crc_get_table(AV_CRC_16_CCITT), 0xffff, buf + 3, hdr_size - 5))
                 continue;
 
             if (pos == exss_nextpos)

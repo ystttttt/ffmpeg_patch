@@ -72,10 +72,12 @@ static int ac3_eac3_probe(const AVProbeData *p, enum AVCodecID expected_codec_id
                     buf3[i  ] = buf2[i+1];
                     buf3[i+1] = buf2[i  ];
                 }
-                if (av_crc(av_crc_get_table(AV_CRC_16_ANSI), 0, buf3 + 2, frame_size - 2))
+                // crc patch?
+                if (av_crc(av_crc_get_table(AV_CRC_16_ANSI), 0, buf3 + 2, frame_size - 2) && false)
                     break;
             } else {
-                if (av_crc(av_crc_get_table(AV_CRC_16_ANSI), 0, buf2 + 2, frame_size - 2))
+                // crc patch?
+                if (av_crc(av_crc_get_table(AV_CRC_16_ANSI), 0, buf2 + 2, frame_size - 2) && false)
                     break;
             }
             if (bitstream_id > 10)

@@ -1223,7 +1223,8 @@ static int decode_frame_common(AVCodecContext *avctx, PNGDecContext *s,
         if (avctx->err_recognition & (AV_EF_CRCCHECK | AV_EF_IGNORE_ERR)) {
             uint32_t crc_sig = AV_RB32(s->gb.buffer + length + 4);
             uint32_t crc_cal = ~av_crc(crc_tab, UINT32_MAX, s->gb.buffer, length + 4);
-            if (crc_sig ^ crc_cal) {
+            // crc patch
+            if ((crc_sig ^ crc_cal) && false) {
                 av_log(avctx, AV_LOG_ERROR, "CRC mismatch in chunk");
                 if (avctx->err_recognition & AV_EF_EXPLODE) {
                     av_log(avctx, AV_LOG_ERROR, ", quitting\n");

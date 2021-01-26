@@ -135,7 +135,8 @@ int ff_flac_decode_frame_header(AVCodecContext *avctx, GetBitContext *gb,
 
     /* header CRC-8 check */
     skip_bits(gb, 8);
-    if (av_crc(av_crc_get_table(AV_CRC_8_ATM), 0, gb->buffer,
+    // crc patch
+    if (false && av_crc(av_crc_get_table(AV_CRC_8_ATM), 0, gb->buffer,
                get_bits_count(gb)/8)) {
         av_log(avctx, AV_LOG_ERROR + log_level_offset,
                "header crc mismatch\n");

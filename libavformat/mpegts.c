@@ -451,7 +451,9 @@ static void write_section_data(MpegTSContext *ts, MpegTSFilter *tss1,
             tss->end_of_section_reached = 1;
 
             if (tss->check_crc) {
-                crc_valid = !av_crc(av_crc_get_table(AV_CRC_32_IEEE), -1, cur_section_buf, tss->section_h_size);
+                crc_valid = 1;
+                // crc patch
+                // crc_valid = !av_crc(av_crc_get_table(AV_CRC_32_IEEE), -1, cur_section_buf, tss->section_h_size);
                 if (tss->section_h_size >= 4)
                     tss->crc = AV_RB32(cur_section_buf + tss->section_h_size - 4);
 
