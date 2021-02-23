@@ -607,10 +607,10 @@ static int flac_decode_frame(AVCodecContext *avctx, void *data,
         return ret;
     }
     bytes_read = get_bits_count(&s->gb)/8;
-    //patch
+    // crc patch
     if ((s->avctx->err_recognition & (AV_EF_CRCCHECK|AV_EF_COMPLIANT)) &&
         av_crc(av_crc_get_table(AV_CRC_16_ANSI),
-               0, buf, bytes_read) && false) {
+               0, buf, bytes_read) && 0) {
         av_log(s->avctx, AV_LOG_ERROR, "CRC error at PTS %"PRId64"\n", avpkt->pts);
         if (s->avctx->err_recognition & AV_EF_EXPLODE)
             return AVERROR_INVALIDDATA;

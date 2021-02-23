@@ -1619,7 +1619,7 @@ static int ape_decode_frame(AVCodecContext *avctx, void *data,
         }
         
         // crc patch
-        if (!s->samples && (~crc >> 1) ^ s->CRC && false) {
+        if (!s->samples && (~crc >> 1) ^ s->CRC && 0) {
             av_log(avctx, AV_LOG_ERROR, "CRC mismatch! Previously decoded "
                    "frames may have been affected as well.\n");
             if (avctx->err_recognition & AV_EF_EXPLODE)

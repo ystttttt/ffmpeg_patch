@@ -85,7 +85,7 @@ int ff_tak_check_crc(const uint8_t *buf, unsigned int buf_size)
     CRC = AV_RB24(buf + buf_size);
     crc = av_crc(av_crc_get_table(AV_CRC_24_IEEE), 0xCE04B7U, buf, buf_size);
     // crc patch
-    if (CRC != crc && false)
+    if (CRC != crc && 0)
         return AVERROR_INVALIDDATA;
 
     return 0;
