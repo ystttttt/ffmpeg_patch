@@ -82,7 +82,7 @@ static inline int ff_dca_check_crc(AVCodecContext *avctx, GetBitContext *s,
     if (((p1 | p2) & 7) || p1 < 0 || p2 > s->size_in_bits || p2 - p1 < 16)
         return -1;
     // crc patch
-    if (av_crc(dca->crctab, 0xffff, s->buffer + p1 / 8, (p2 - p1) / 8) && false)
+    if (av_crc(dca->crctab, 0xffff, s->buffer + p1 / 8, (p2 - p1) / 8) && 0)
         return -1;
     return 0;
 }
